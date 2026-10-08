@@ -1,0 +1,134 @@
+{
+  "thread_id": "sesion-cliente-102",
+  "recursion_limit": 10,
+  "modelo": "qwen2.5:14b",
+  "checkpointer": "AsyncSqliteSaver",
+  "turnos": [
+    {
+      "turno": 1,
+      "pregunta": "¿Cuántos pedidos tuvo el cliente 102 y cuál fue el total?",
+      "herramientas": 2,
+      "mensajes": [
+        {
+          "type": "system",
+          "content": "Sos un analista de ventas. No inventes cifras ni clientes.\nPara pedidos y totales usá buscar_pedidos.\nLa primera respuesta de esa herramienta es un corte parcial: completo=false y no trae el total. Cuando veas informacion_incompleta o completo=false, llamá otra vez a buscar_pedidos con el mismo cliente_id e incluir_total=true. No respondas al usuario antes de eso.\nSi la herramienta dice que el cliente no existe, pedí que aclaren el id.\nSi después preguntan por el último pedido, usá el cliente y los datos que ya están en la conversación. No vuelvas a pedir el id.\nRespondé en español y formateá los miles con punto: $14.500."
+        },
+        {
+          "type": "human",
+          "content": "¿Cuántos pedidos tuvo el cliente 102 y cuál fue el total?"
+        },
+        {
+          "type": "ai",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "buscar_pedidos",
+              "args": {
+                "cliente_id": 102,
+                "incluir_total": false
+              },
+              "id": "f05bb682-7d24-44d8-bbab-46b0d1e38e08",
+              "type": "tool_call"
+            }
+          ]
+        },
+        {
+          "type": "tool",
+          "content": "{\"cliente_id\": 102, \"pedidos\": 3, \"total\": null, \"ultimo\": null, \"completo\": false, \"informacion_incompleta\": \"Corte parcial de la base: falta el total. No respondas todavía. Llamá de nuevo a buscar_pedidos con cliente_id=102 e incluir_total=true.\"}",
+          "name": "buscar_pedidos"
+        },
+        {
+          "type": "ai",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "buscar_pedidos",
+              "args": {
+                "cliente_id": 102,
+                "incluir_total": true
+              },
+              "id": "007eb556-2ac4-46cf-9eeb-af1c97caa2e8",
+              "type": "tool_call"
+            }
+          ]
+        },
+        {
+          "type": "tool",
+          "content": "{\"cliente_id\": 102, \"cliente\": \"Ana Gómez\", \"pedidos\": 3, \"total\": 14500, \"ultimo\": {\"id\": 88, \"fecha\": \"2026-03-02\", \"monto\": 4200}, \"completo\": true}",
+          "name": "buscar_pedidos"
+        },
+        {
+          "type": "ai",
+          "content": "El cliente Ana Gómez realizó 3 pedidos en total. El monto total de estos pedidos es de $14.500. El último pedido que realizó fue el número 88, con un monto de $4.200, realizado el 2 de marzo de 2026."
+        }
+      ]
+    },
+    {
+      "turno": 2,
+      "pregunta": "¿y el último?",
+      "herramientas": 0,
+      "mensajes": [
+        {
+          "type": "system",
+          "content": "Sos un analista de ventas. No inventes cifras ni clientes.\nPara pedidos y totales usá buscar_pedidos.\nLa primera respuesta de esa herramienta es un corte parcial: completo=false y no trae el total. Cuando veas informacion_incompleta o completo=false, llamá otra vez a buscar_pedidos con el mismo cliente_id e incluir_total=true. No respondas al usuario antes de eso.\nSi la herramienta dice que el cliente no existe, pedí que aclaren el id.\nSi después preguntan por el último pedido, usá el cliente y los datos que ya están en la conversación. No vuelvas a pedir el id.\nRespondé en español y formateá los miles con punto: $14.500."
+        },
+        {
+          "type": "human",
+          "content": "¿Cuántos pedidos tuvo el cliente 102 y cuál fue el total?"
+        },
+        {
+          "type": "ai",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "buscar_pedidos",
+              "args": {
+                "cliente_id": 102,
+                "incluir_total": false
+              },
+              "id": "f05bb682-7d24-44d8-bbab-46b0d1e38e08",
+              "type": "tool_call"
+            }
+          ]
+        },
+        {
+          "type": "tool",
+          "content": "{\"cliente_id\": 102, \"pedidos\": 3, \"total\": null, \"ultimo\": null, \"completo\": false, \"informacion_incompleta\": \"Corte parcial de la base: falta el total. No respondas todavía. Llamá de nuevo a buscar_pedidos con cliente_id=102 e incluir_total=true.\"}",
+          "name": "buscar_pedidos"
+        },
+        {
+          "type": "ai",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "buscar_pedidos",
+              "args": {
+                "cliente_id": 102,
+                "incluir_total": true
+              },
+              "id": "007eb556-2ac4-46cf-9eeb-af1c97caa2e8",
+              "type": "tool_call"
+            }
+          ]
+        },
+        {
+          "type": "tool",
+          "content": "{\"cliente_id\": 102, \"cliente\": \"Ana Gómez\", \"pedidos\": 3, \"total\": 14500, \"ultimo\": {\"id\": 88, \"fecha\": \"2026-03-02\", \"monto\": 4200}, \"completo\": true}",
+          "name": "buscar_pedidos"
+        },
+        {
+          "type": "ai",
+          "content": "El cliente Ana Gómez realizó 3 pedidos en total. El monto total de estos pedidos es de $14.500. El último pedido que realizó fue el número 88, con un monto de $4.200, realizado el 2 de marzo de 2026."
+        },
+        {
+          "type": "human",
+          "content": "¿y el último?"
+        },
+        {
+          "type": "ai",
+          "content": "El último pedido que realizó Ana Gómez fue el número 88, con un monto de $4.200, realizado el 2 de marzo de 2026."
+        }
+      ]
+    }
+  ]
+}
